@@ -1,0 +1,8 @@
+/recursos
+/data
+/env
+**/__pycache__
+*.env
+*.xlsx
+*.xls
+*.ipynb

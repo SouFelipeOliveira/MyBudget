@@ -1,0 +1,9 @@
+asgiref
+django
+django-cors-headers
+djangorestframework
+psycopg2
+psycopg2-binary
+pytz
+sqlparse
+typing_extensions

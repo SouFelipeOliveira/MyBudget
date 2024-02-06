@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  frontend:
+    build:
+      context: ./frontend/
+    ports:
+      - "3000:3000"
+    volumes:
+      - "./frontend:/app"
+  app:
+    build:
+      context: ./backend/
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    command: sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    env_file: 
+      - "./backend/.env"
+    depends_on:
+      - db_mybudget
+    restart: on-failure
+  db_mybudget:
+    image: postgres:16
+    ports:
+      - "5431:5432"
+    volumes:
+      - ./backend/data/db:/var/lib/postgresql/data
+    env_file:
+      - ./backend/.env
